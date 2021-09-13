@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.zerock.domain.BoardVO;
 
 import lombok.Setter;
@@ -56,7 +58,7 @@ public class BoardMapperTests {
 		
 		log.info("DELETE COUNT: " + mapper.delete(3L));
 	}
-	*/
+	
 	@Test
 	public void testUpdate() {
 		BoardVO board = new BoardVO();
@@ -68,5 +70,7 @@ public class BoardMapperTests {
 		
 		int count = mapper.update(board);
 		log.info("update count : " + count);
-	}
+	}*/
+	
+	
 }
