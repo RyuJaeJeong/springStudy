@@ -21,10 +21,18 @@ public class BoardController {
 	
 	private BoardService service;
 	
+	
+	
 	@GetMapping("/list")
 	public void list(Model model) {
 		log.info("list");
 		model.addAttribute("list", service.getList());
+	}
+	
+	//등록페이지를 호출해주는 역할
+	@GetMapping("/register")
+	public void register() {	
+		
 	}
 	
 	@PostMapping("/register")
