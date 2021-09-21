@@ -44,10 +44,13 @@ public class BoardController {
 		return"redirect:/board/list";
 	}
 	
+	
 	@GetMapping("/get")
 	public void get(@RequestParam("bno") long bno, Model model) {
 		
 		log.info("/get");
+		System.out.println(service.get(bno).getTitle());
+		System.out.println(service.get(bno).getContent());
 		model.addAttribute("board", service.get(bno));
 	}
 	
