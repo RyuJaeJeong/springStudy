@@ -6,7 +6,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Board Read</h1>
+                    <h1 class="page-header">Board modify</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -14,30 +14,27 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Board Read Page</div>
+                        <div class="panel-heading">Board modify Page</div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                        	<form role="form" action="/board/modify" method="post">
                           		<div class="form-group">
-                           			<label>bno</label> <input class="form-control" name="bno" value='${board.bno }' readonly="readonly">
+                           			<label>bno</label> <input class="form-control" name="bno" value='<c:out value="${board.bno }" />' readonly="readonly">
                            		</div>
                            		<div class="form-group">
-
-                           			<label>Title</label> <input class="form-control" name="title" value='<c:out value="${board.title }" />' readonly="readonly">
+                           			<label>Title</label> <input class="form-control" name="title" value='<c:out value="${board.title }" />'>
                            		</div>
                            		<div class="form-group">
-                           			content :   <br>
                            			<label>Text area</label> 
-                           			<textarea class="form-control" rows="3" name="content" readonly="readonly"><c:out value="${board.content }" /></textarea>
+                           			<textarea class="form-control" rows="3" name="content"><c:out value="${board.content }" /></textarea>
                            		</div>	
                            		<div class="form-group">
                            			<label>Writer</label> <input class="form-control" name="writer"  value='<c:out value="${board.writer }" />' readonly="readonly">
                            		</div>		
-                           		<button data-oper='modify' class="btn btn-default" onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">modify</button>
-                           		<button data-oper='list' class="btn btn-info" onclick="location.href='/board/list'"/>List</button>
-                           		<form id='operForm' action="/board/modify" method="get">
-                           			<input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno }" />'>
-                           		</form>
-                           
+                           		<button type="submit" data-oper='modify' class="btn btn-default">modify</button>
+                           		<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
+                           		<button type="submit" data-oper='list' class="btn btn-info" class="btn btn-info"/>List</button>
+                           </form>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -50,18 +47,20 @@
        
 <script>
 $(document).ready(function(){
-	
-	var operForm = $("operForm");
-	
-	$("button[data-oper='modify']").on("click", function(e){
-		operForm.attr("action", "/board/modify").submit();
-	});
-	
-	$("button[data-oper='list']").on("click", function(e){
-		operForm.find("#bno").remove();
-		operForm.attr("action", "/board/list").submit();
-		operForm.submit();
+	var formObj = $("form");
+	$('button').on("click", function(e){
+		e.preventDefault();
+		var operation = $(this).data("oper");
+		console.log(operation);
+		if(operation === 'remove') {
+			formObj.attr("action", "/board/remove");
+		}else if(operation === 'list') {
+			//리스트로 이동함
+			formObj.attr("action", "/board/list").attr("method", "get");
+			formObj.empty();
+			return;
+		}
+		formObj.submit();
 	});
 });
-
 </script>       
