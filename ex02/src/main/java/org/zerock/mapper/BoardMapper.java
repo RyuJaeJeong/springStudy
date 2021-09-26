@@ -4,15 +4,18 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 public interface BoardMapper {
 	
 	
 	public List<BoardVO> getList();
 	
+	public List<BoardVO> getListWithPaging(Criteria cri);
+	
 	public void insert(BoardVO board);
 	
-	public void insertSelectKey(BoardVO board); //ÀÚµ¿À¸·Î Ãß°¡µÇ´Â pk°ªÀ» È®ÀÎÇØ¾ßÇÒ¶§.
+	public void insertSelectKey(BoardVO board); //ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ç´ï¿½ pkï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½Ò¶ï¿½.
 	
 	public BoardVO read(long bno);
 	

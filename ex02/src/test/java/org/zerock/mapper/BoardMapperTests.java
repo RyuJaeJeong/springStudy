@@ -1,5 +1,7 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -29,9 +32,9 @@ public class BoardMapperTests {
 	@Test
 	public void testInsert() {
 		BoardVO board = new BoardVO();
-		board.setTitle("»õ·Î ÀÛ¼ºÇÏ´Â ±Û");
-		board.setContent("»õ·Î ÀÛ¼ºÇÏ´Â ³»¿ë");
-		board.setWriter("´ººñ");
+		board.setTitle("ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½");
+		board.setContent("ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		board.setWriter("ï¿½ï¿½ï¿½ï¿½");
 		mapper.insert(board);
 		log.info(board);
 	}
@@ -39,9 +42,9 @@ public class BoardMapperTests {
 	@Test
 	public void testInsertSelectKey() {
 		BoardVO board = new BoardVO();
-		board.setTitle("»õ·Î ÀÛ¼ºÇÏ´Â ±Û");
-		board.setContent("»õ·Î ÀÛ¼ºÇÏ´Â ³»¿ë");
-		board.setWriter("´ººñ");
+		board.setTitle("ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½");
+		board.setContent("ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		board.setWriter("ï¿½ï¿½ï¿½ï¿½");
 		mapper.insertSelectKey(board);
 		log.info(board);
 	}
@@ -64,13 +67,24 @@ public class BoardMapperTests {
 		BoardVO board = new BoardVO();
 		
 		board.setBno(5L);
-		board.setTitle("¼öÁ¤µÈ Á¦¸ñ");
-		board.setContent("¼öÁ¤µÈ ³»¿ë");
+		board.setTitle("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		board.setContent("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		board.setWriter("user00");
 		
 		int count = mapper.update(board);
 		log.info("update count : " + count);
 	}*/
 	
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		//5ê°œì”© 3í˜ì´ì§€
+		cri.setPageNumber(3);
+		cri.setAmount(5);
+		
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		
+		list.forEach(board -> log.info(board));
+	}
 	
 }
