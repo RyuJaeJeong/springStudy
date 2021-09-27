@@ -43,6 +43,11 @@
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
+            
+            <form role="form" action="/board/modify" method="post">
+            	<input type="hidden" name='pageNumber' value = '<c:out value="${cri.pageNumber}" />'>
+                <input type="hidden" name='amount' value = '<c:out value="${cri.amount}" />'>
+            </form>
        <%@include file="../includes/footer.jsp" %>
        
 <script>
@@ -57,8 +62,11 @@ $(document).ready(function(){
 		}else if(operation === 'list') {
 			//리스트로 이동함
 			formObj.attr("action", "/board/list").attr("method", "get");
+			var pageNumberTag = $("input[name='pageNumber']").clone();
+			var amountTag = $("input[name='amount']").clone();
 			formObj.empty();
-			return;
+			formObj.append(pageNumberTag);
+			formObj.append(amountTag);
 		}
 		formObj.submit();
 	});
