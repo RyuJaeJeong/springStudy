@@ -60,8 +60,8 @@ public class BoardController {
 	}
 	
 	
-	@GetMapping({"/get", "/modify"})
-	public void get(@RequestParam("bno") long bno,@ModelAttribute("cri") Criteria cri,Model model) {
+	@GetMapping({ "/get", "/modify" })
+	public void get(@RequestParam("bno") long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/get or modify");
 		model.addAttribute("board", service.get(bno));
 	}
@@ -73,8 +73,10 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
-		rttr.addFlashAttribute("pageNumber", cri.getPageNumber());
-		rttr.addFlashAttribute("amount", cri.getAmount());
+		rttr.addAttribute("pageNumber", cri.getPageNumber());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		
 		return"redirect:/board/list";
 	}
@@ -86,9 +88,10 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
-		rttr.addFlashAttribute("pageNumber", cri.getPageNumber());
-		rttr.addFlashAttribute("amount", cri.getAmount());
-		
+		rttr.addAttribute("pageNumber", cri.getPageNumber());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
 		return"redirect:/board/list";
 	}
 	
