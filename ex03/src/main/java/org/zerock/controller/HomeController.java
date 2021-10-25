@@ -24,6 +24,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		System.out.println("접근 성공.");
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
