@@ -52,9 +52,50 @@
             <!-- /.row -->
        <%@include file="../includes/footer.jsp" %>
        
+<script type="text/javascript" src="/resources/js/reply.js"></script>       
 <script>
 $(document).ready(function(){
+	console.log("JS TEST");
+	console.log("====================")
 	
+	var bnoValue = '<c:out value="${board.bno}"/>';
+	
+	//replyService add test
+	/*replyService.add(
+		{reply:"JS TEST", replyer:"tester", bno:bnoValue},		
+		function(result) {
+			alert("RESULT : " + result);
+		}
+	);
+	
+	replyService.getList({bno:bnoValue, page:1}, function(list){
+		for(var i = 0, len = list.length||0; i < len; i++){
+			console.log(list[i]);
+		}	
+	});
+	
+	replyService.remove(12, function(count){
+		console.log( "count : " +  count);
+		if(count === "success"){
+			alert("REMOVED")
+		}
+	}, function(err) {
+		alert('ERROR...');
+	});
+	
+	replyService.update({
+		rno : 2,
+		bno : bnoValue,
+		reply : "Modified Reply..."
+	}, function(result){
+		alert("수정완료...");		
+	});*/
+	
+	replyService.get(11, function(data){
+		console.log(data);
+	});
+	
+	/*=============================*/
 	var operForm = $("#operForm");
 	
 	$("button[data-oper='modify']").on("click", function(e){
