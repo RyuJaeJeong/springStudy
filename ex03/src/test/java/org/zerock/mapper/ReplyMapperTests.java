@@ -61,7 +61,7 @@ public class ReplyMapperTests {
 		vo.setReply("댓글 수정 테스트 ");
 		int count = mapper.update(vo);
 		log.info("UPDATE COUNT:" + count);
-	}*/
+	}
 	
 	
 	@Test
@@ -69,6 +69,12 @@ public class ReplyMapperTests {
 		Criteria cri = new Criteria();
 		List<ReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
 		replies.forEach(reply -> log.info(reply));
-	}
+	}*/
 	
+	@Test
+	public void testGetList() {
+		Criteria cri = new Criteria(1, 10);
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, 15204386L);
+		replies.forEach(reply -> log.info(reply));
+	}
 }
