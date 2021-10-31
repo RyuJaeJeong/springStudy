@@ -30,7 +30,6 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO get(long bno) {
 		
 		log.info("get-------------" + bno);
-		
 		return mapper.read(bno);
 	}
 

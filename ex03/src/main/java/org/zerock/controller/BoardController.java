@@ -63,6 +63,7 @@ public class BoardController {
 	@GetMapping({ "/get", "/modify" })
 	public void get(@RequestParam("bno") long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/get or modify");
+		System.out.println(service.get(bno).getReplyCnt());
 		model.addAttribute("board", service.get(bno));
 	}
 	

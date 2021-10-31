@@ -51,4 +51,6 @@ PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 				WHERE bno=#{bno}
 		]]>
 	</select>
+	
+	
 </mapper>

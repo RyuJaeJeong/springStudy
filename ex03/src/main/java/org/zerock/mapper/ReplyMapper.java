@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
 
+import oracle.jdbc.proxy.annotation.ProxyAccess;
+
 public interface ReplyMapper {
 	public int insert(ReplyVO vo);
 	public ReplyVO read(long bno);
